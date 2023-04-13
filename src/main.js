@@ -5,10 +5,10 @@ import App from './App.vue'
 import router from './router'
 import VeeValidatePlugin from './includes/validation'
 import './includes/firebase'
+import { auth } from './includes/firebase'
 
 import './assets/base.css'
 import './assets/main.css'
-import { auth } from './includes/firebase'
 
 let app
 
