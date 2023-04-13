@@ -4,7 +4,7 @@
       <!-- App Name -->
       <router-link
         class="text-white font-bold uppercase text-2xl mr-4"
-        :to="{ name: 'home'}"
+        :to="{ name: 'home' }"
         exact-active-class="no-active"
         >Music</router-link
       >
@@ -26,7 +26,7 @@
               <router-link class="px-2 text-white" to="/manage">Manage</router-link>
             </li>
             <li>
-              <a class="px-2 text-white" href="#" @click.prevent="userStore.signOut">Logout</a>
+              <a class="px-2 text-white" href="#" @click.prevent="signOut">Logout</a>
             </li>
           </template>
         </ul>
@@ -50,6 +50,14 @@ export default {
     toggleAuthModal() {
       this.modalStore.isOpen = !this.modalStore.isOpen
       console.log(this.modalStore.isOpen)
+    },
+    signOut() {
+      this.userStore.signOut()
+      
+      console.log(this.$route)
+      
+      this.$router.push({ name: 'home' })
+      
     }
   }
 }
