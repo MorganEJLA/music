@@ -20,6 +20,7 @@
         >
           <h5>Drop your files here</h5>
         </div>
+        <input type="file" multiple @change="upload($event)" />
         <hr class="my-6" />
         <!-- Progress Bars -->
         <div class="mb-4" v-for="upload in uploads" :key="upload.name">
@@ -42,6 +43,7 @@
 </template>
 <script>
 import { storage, auth, songsCollection } from '@/includes/firebase'
+import { onBeforeUnmount } from 'vue'
 
 export default {
   name: 'Upload',
@@ -54,8 +56,9 @@ export default {
   methods: {
     upload($event) {
       this.is_dragover = false
+      console.log($event)
 
-      const files = [...$event.dataTransfer.files]
+      const files = $event.dataTransfer ? [...$event.dataTransfer.files] : [...$event.target.files]
 
       files.forEach((file) => {
         if (file.type !== 'audio/mpeg') {
@@ -109,6 +112,11 @@ export default {
       })
       console.log(files)
     }
+  },
+  beforeUnmount() {
+    this.uploads.forEach((upload) => {
+      upload.task.cancel()
+    })
   }
 }
 </script>
