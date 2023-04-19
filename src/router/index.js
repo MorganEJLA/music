@@ -3,7 +3,6 @@ import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
 import Manage from '@/views/Manage.vue'
 import useUserStore from '@/stores/user'
-import { stringifyExpression } from '@vue/compiler-core'
 
 const routes = [
   {
