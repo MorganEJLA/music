@@ -102,11 +102,15 @@
 </template>
 <script>
 import AppUpload from '@/components/Upload.vue'
+import { songsCollection, auth } from '@/includes/firebase'
 
 export default {
   name: 'Manage',
   components: {
     AppUpload
+  },
+  async created() {
+    const snapshot = songsCollection.where('uid', '==', auth.currentUser.uid).get()
   }
 }
 </script>
