@@ -117,6 +117,7 @@ export default {
   },
   async created() {
     const snapshot = songsCollection.where('uid', '==', auth.currentUser.uid).get()
+
     snapshot.forEach((document) => {
       const song = {
         ...document.data(),
