@@ -48,6 +48,12 @@ export default {
       }
       this.songs.push(song)
     })
+  },
+  methods: {
+    updateSong(i, values) {
+      this.songs[i].modified_name = values.modified_name
+      this.songs[i].genre = values.genre
+    }
   }
 }
 </script>
