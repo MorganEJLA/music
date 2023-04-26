@@ -63,6 +63,7 @@
 
 <script>
 import { songsCollection } from '@/includes/firebase'
+import { tryStatement } from '@babel/types'
 
 export default {
   name: 'CompositionItem',
@@ -70,6 +71,14 @@ export default {
     song: {
       type: Object,
       required: true
+    },
+    updateSong: {
+      type: Function,
+      required: true
+    },
+    index:{
+      type:Number,
+      required:true,
     }
   },
   data() {
@@ -99,6 +108,8 @@ export default {
         this.alert_message = 'Something went wrong!Try again later'
         return
       }
+
+      this.updateSong(this.index, )
       this.in_submission = false
       this.alert_variant = 'bg-green-500'
       this.alert_message = 'Success!'
