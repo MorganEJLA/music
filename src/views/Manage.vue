@@ -71,6 +71,14 @@ export default {
       this.unsavedFlag = value
     }
   },
-  beforeRouteLeave(to, from, next) {}
+  beforeRouteLeave(to, from, next) {
+    if (!this.unsavedFlag) {
+      next()
+      // eslint-disable-next-line no-alert, no-restricted-globals
+    } else {
+      const leave = confirm('You have unsaved changes. Are you about leaving?')
+      next(leave)
+    }
+  }
 }
 </script>
