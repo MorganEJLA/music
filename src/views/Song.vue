@@ -88,8 +88,8 @@
 import { songsCollection, auth, commentsCollection } from '@/includes/firebase'
 import { mapState, mapActions } from 'pinia'
 import usePlayerStore from '@/stores/player'
-
 import useUserStore from '@/stores/user'
+
 export default {
   name: 'Song',
   data() {
