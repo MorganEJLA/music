@@ -3,7 +3,10 @@ import { defineStore } from 'pinia'
 
 export default defineStore('player', {
   state: () => ({
-    current_song: {}
+    current_song: {},
+    sound: {},
+    seek: '00:00',
+    duration: '00:00'
   }),
   actions: {
     async newSong(song) {
@@ -15,6 +18,9 @@ export default defineStore('player', {
       })
 
       this.sound.play()
+      this.sound.on('play', () => {
+        requestAnimationFrame(this.progress)
+      })
     },
     async toggleAudio() {
       if (!this.sound.playing) {
@@ -25,8 +31,17 @@ export default defineStore('player', {
       } else {
         this.sound.play()
       }
+    },
+    progress() {
+      this.seek = this.sound.seek()
+      this.duration = this.sound.duration()
+
+      if (this.sound.playing()) {
+        requestAnimationFrame(this.progress)
+      }
     }
   },
+
   getters: {
     playing: (state) => {
       if (state.sound.playing) {
