@@ -13,8 +13,11 @@ import GlobalComponents from './includes/_globals'
 
 import './assets/base.css'
 import './assets/main.css'
+import 'nprogress/nprogress.css'
 
 registerSW({ immediate: true })
+
+progressBar(router)
 
 let app
 

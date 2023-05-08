@@ -12,11 +12,12 @@ export default {
           path
             .split('/')
             .pop()
-            .replace(/\. \w+$/, '')
+            .replace(/\.\w+$/, '')
         )
       )
+      //   console.log(path, componentName)
 
-      app.component(`${componentName}`, module)
+      app.component(`Base${componentName}`, module.default)
     })
   }
 }
