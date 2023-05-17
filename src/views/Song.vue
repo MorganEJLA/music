@@ -128,7 +128,7 @@ export default {
     }
   },
   async beforeRouteEnter(to, from, next) {
-    const docSnapshot = await songsCollection.doc(this.$route.params.id).get()
+    const docSnapshot = await songsCollection.doc(to.params.id).get()
     next((vm) => {
       if (!docSnapshot.exists) {
         vm.$router.push({ name: 'home' })
